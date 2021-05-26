@@ -12,16 +12,18 @@ def home(request):
     return HttpResponse('Hello World!')
 
 @api_view(["POST"])
-def computeAge(dd, mm, yyyy): 
+def computeAge(request): 
 
-    day = json.loads(dd.body)
-    month = json.loads(mm.body)
-    year = json.loads(yyyy.body)
+    date1 = json.loads(request.body)
 
     try:
-        bday = datetime.date(year, month, day)
+        day = date1.get("dd", 0)
+        month = date1.get("mm", 0)
+        year = date1.get("yyyy", 0)
+        bday = datetime.datetime(year, month, day)
     except ValueError as e:
         return Response(e.args[0], status.HTTP_400_BAD_REQUEST)
+    
     today = date.today()
 
     return JsonResponse("Birthday: "+bday+"\nToday: "+today, safe=False)
