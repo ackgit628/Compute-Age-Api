@@ -31,9 +31,9 @@ def computeAge(request):
 
     if bday.year > today.year:
         return JsonResponse("greetings time traveller", safe=False)
-    if (bday.month < today.month) or (bday.month == today.month and bday.day < today.day):
+    if (bday.month < today.month) or (bday.month == today.month and bday.day <= today.day):
         age = today.year - bday.year
-        return JsonResponse("Your age is "+str(age)+"yrs", safe=False)
+        return JsonResponse(f"Your age is {str(age)}yrs", safe=False)
     if (bday.month > today.month) or (bday.month == today.month and bday.day > today.day):
         age = today.year - bday.year - 1
-        return JsonResponse("Your age is "+str(age)+"yrs", safe=False)
+        return JsonResponse(f"Your age is {str(age)}yrs", safe=False)
