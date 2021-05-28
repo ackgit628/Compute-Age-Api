@@ -1,0 +1,20 @@
+.form {
+    
+    height: 600px;
+    width: 600px;
+
+    &__age {
+        height: 300px;
+        width: 300px;
+        flex-direction: column;
+
+        label[id=label] {
+            align-self: flex-start;
+        }
+
+        input[type=text] {
+            align-self: flex-end;
+        }
+
+    }
+}

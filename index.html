@@ -4,25 +4,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js"> </script>
-    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}"> </script>
+    <title>Check your Age</title>
     
 </head>
 <body>
 
-    <form name="AgeForm" onsubmit= "someFunction(event)">
-        <label>Day</label>
-        <input id="day" name="day" type="number">
-        <label>Month</label>
-        <input id="month" name="month" type="number">
-        <label>Year</label>
-        <input id="year" name="year" type="number">
-        <input type="submit" value="Submit">
-    </form>
+    <div class="flex flex-jc-c flex-ai-c">
+        
+        <div class="flex flex-jc-c flex-ai-c form">
+            <form name="AgeForm" class="flex flex-jc-c flex-ai-c form__age" onsubmit="someFunction(event)">
+                <p>
+                    <label id="label">Day</label>
+                    <input id="day" name="day" type="number">
+                </p>
+                <p>
+                    <label id="label">Month</label>
+                    <input id="month" name="month" type="number">
+                </p>
+                <p>
+                    <label id="label">Year</label>
+                    <input id="year" name="year" type="number">
+                </p>
+                <p>
+                    <input type="submit" value="Submit">
+                </p>
+            </form>
 
-    <p id="response">
+            <p id="response">
+        
+            </p>
 
-    </p>
+        </div>
+        
+    </div>
     
 </body>
 </html>
