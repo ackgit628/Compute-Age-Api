@@ -22,18 +22,18 @@ def computeAge(request):
         month = date1.get("month", 0)
         year = date1.get("year", 0)
         bday = datetime.date(year, month, day)
-    except ValueError as e:
-        return Response(e.args[0], status.HTTP_400_BAD_REQUEST)
+    except Exception as e:
+        return JsonResponse({ "message" : e.args[0] }, status = status.HTTP_400_BAD_REQUEST, safe=False)
     
     today = date.today()
 
     # return JsonResponse("{  message: Birthday: "+str(bday)+" and Today: "+str(today)+"  }", safe=False)
 
     if bday.year > today.year:
-        return JsonResponse("greetings time traveller", safe=False)
+        return JsonResponse({ "message" : "greetings time traveller" }, safe=False)
     if (bday.month < today.month) or (bday.month == today.month and bday.day <= today.day):
         age = today.year - bday.year
-        return JsonResponse(f"Your age is {str(age)}yrs", safe=False)
+        return JsonResponse({ "message" : f"Your age is {str(age)}yrs" }, safe=False)
     if (bday.month > today.month) or (bday.month == today.month and bday.day > today.day):
         age = today.year - bday.year - 1
-        return JsonResponse(f"Your age is {str(age)}yrs", safe=False)
+        return JsonResponse({ "message" : f"Your age is {str(age)}yrs" }, safe=False)
