@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block titleblock %}
+    Check Your Age
+{% endblock %}
+
+
+{% block newblock %}
+
+<div class="flex flex-jc-c flex-ai-c">
+    
+    <div class="form__age flex flex-jc-c flex-ai-c">
+        <form method="POST"> {% csrf_token %}
+            {{ form.as_p }}
+            <br>
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
+    
+</div>
+
+{% endblock %}

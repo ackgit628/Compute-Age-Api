@@ -4,16 +4,27 @@ from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from datetime import date
+# from datetime import date
 import datetime
 import json
+from .forms import AgeForm
+from .utils.computeAge import computeAge
 
 # Create your views here.
-def home(request):
-    return HttpResponse('Hello World!')
+def home_view(request):
+    return render(request, "home.html", {})
+
+def checkAge_view(request):
+    form = AgeForm(request.POST or None)
+    if form.is_valid():
+        # form.save()
+        pass
+
+    context = { "form" : form }
+    return render(request, "age_form.html", context)
 
 @api_view(["POST"])
-def computeAge(request): 
+def checkAge(request): 
 
     date1 = json.loads(request.body)
 
@@ -25,15 +36,7 @@ def computeAge(request):
     except ValueError as e:
         return Response(e.args[0], status.HTTP_400_BAD_REQUEST)
     
-    today = date.today()
+    today = datetime.date.today()
 
     # return JsonResponse("{  message: Birthday: "+str(bday)+" and Today: "+str(today)+"  }", safe=False)
-
-    if bday.year > today.year:
-        return JsonResponse("greetings time traveller", safe=False)
-    if (bday.month < today.month) or (bday.month == today.month and bday.day <= today.day):
-        age = today.year - bday.year
-        return JsonResponse(f"Your age is {str(age)}yrs", safe=False)
-    if (bday.month > today.month) or (bday.month == today.month and bday.day > today.day):
-        age = today.year - bday.year - 1
-        return JsonResponse(f"Your age is {str(age)}yrs", safe=False)
+    computeAge(bday, today)

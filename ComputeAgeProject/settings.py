@@ -37,8 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # third party
     'rest_framework',
-    'myWebApp'
+
+    # my apps
+    'myWebApp',
 ]
 
 MIDDLEWARE = [
@@ -56,7 +60,7 @@ ROOT_URLCONF = 'ComputeAgeProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

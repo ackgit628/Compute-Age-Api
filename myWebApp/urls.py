@@ -1,7 +1,8 @@
 from django.urls import path
-from . import views
+from myWebApp.views import home_view, checkAge_view
 
 urlpatterns = [
-    path('', views.home, name='home'),
-    path('computeAge/', views.computeAge)
+    path('', home_view, name='home'),
+    path('home/', home_view, name='home'),
+    path('check-age/', checkAge_view)
 ]
