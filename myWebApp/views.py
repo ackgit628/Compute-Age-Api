@@ -7,14 +7,10 @@ from rest_framework import status
 from datetime import date
 import datetime
 import json
-import ComputeAgeProject
 
 # Create your views here.
 def home_view(request):
-    return HttpResponse('Hello World!')
-
-def checkAge_view(request):
-    return render(request, "index.html")
+    return HttpResponse('Welcome!')
 
 @api_view(["POST"])
 def computeAge(request): 
