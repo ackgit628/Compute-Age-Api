@@ -10,7 +10,8 @@ import json
 
 # Create your views here.
 def home_view(request):
-    return HttpResponse('Welcome!')
+    # return HttpResponse('Welcome!')
+    return render(request, "index.html")
 
 @api_view(["POST"])
 def computeAge(request): 
